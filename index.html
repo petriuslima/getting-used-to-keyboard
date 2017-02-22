@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Getting used to keyboard</title>
+    <style type="text/css">
+        .key-box {
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            border-radius: 5px;
+            border: 1px solid #000;
+            font-size: 16px;
+            float:left;
+        }
+    </style>
+</head>
+<body>
+
+<script type="text/javascript">
+    var stringKeys = 'ABCDEFGHIJKLMNOPQRSTUVWXYZÇ';
+
+    for (var i = 0; i < stringKeys.length; i++) {
+        var div = document.createElement('div');
+        div.className = 'key-box';
+        div.innerHTML = stringKeys.charAt(i);
+
+        document.body.appendChild(div);
+    }
+</script>
+</body>
+</html>
