@@ -5,7 +5,7 @@
     <title>Getting used to keyboard</title>
     <style type="text/css">
         .key-box {
-            width: 30px;
+            padding: 0px 7px;
             height: 30px;
             line-height: 30px;
             text-align: center;
@@ -19,14 +19,75 @@
 <body>
 
 <script type="text/javascript">
-    var stringKeys = 'ABCDEFGHIJKLMNOPQRSTUVWXYZÇ';
+    var keys = [
+        {key: "A", code: 65},
+        {key: "B", code: 66},
+        {key: "C", code: 67},
+        {key: "D", code: 68},
+        {key: "E", code: 69},
+        {key: "F", code: 70},
+        {key: "G", code: 71},
+        {key: "H", code: 72},
+        {key: "I", code: 73},
+        {key: "J", code: 74},
+        {key: "K", code: 75},
+        {key: "L", code: 76},
+        {key: "M", code: 77},
+        {key: "N", code: 78},
+        {key: "O", code: 79},
+        {key: "P", code: 80},
+        {key: "Q", code: 81},
+        {key: "R", code: 82},
+        {key: "S", code: 83},
+        {key: "T", code: 84},
+        {key: "U", code: 85},
+        {key: "V", code: 86},
+        {key: "W", code: 87},
+        {key: "X", code: 88},
+        {key: "Y", code: 89},
+        {key: "Z", code: 90},
+        {key: "PgDown", code: 34},
+        {key: "PgUp", code: 33},
+        {key: "Home", code: 36},
+        {key: "End", code: 35},
+        {key: "Insert", code: 45},
+        {key: "Delete", code: 46},
+        {key: "Enter", code: 13},
+        {key: "Backspace", code: 8}
+    ];
 
-    for (var i = 0; i < stringKeys.length; i++) {
+    for (var i = 0; i < keys.length; i++) {
         var div = document.createElement('div');
         div.className = 'key-box';
-        div.innerHTML = stringKeys.charAt(i);
+        div.id = 'key-' + keys[i].code;
+        div.innerHTML = keys[i].key;
 
         document.body.appendChild(div);
+    }
+
+    document.onkeydown = function(e) {
+        e = e || window.event;
+        e.preventDefault();
+
+        keys.find(function(key) {
+            if (key.code == e.keyCode) {
+
+                var hasBlinked = false;
+
+                var intervalo = setInterval(function(){
+                    document.getElementById('key-' + e.keyCode).style.backgroundColor = '#9dcde0';
+
+                    if (hasBlinked) {
+                        document.getElementById('key-' + e.keyCode).style.backgroundColor = '#fff';
+                        clearInterval(intervalo);
+
+                        return;
+                    }
+
+                    hasBlinked = true;
+                }, 75);
+            }
+        })
     }
 </script>
 </body>
