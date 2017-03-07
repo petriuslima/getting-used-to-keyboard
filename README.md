@@ -8,9 +8,10 @@ Because sometines we need to change our keyboard for some that the keys is not f
 - [ ] Create keyboard layout with all wanted keys *(doing)*
 - [ ] Create feature to select wanted keys
 - [x] Initialize with default keys selected
-- [ ] Randomize keys and show them in specific screen area
+- [x] Randomize keys and show them in specific screen area
 - [x] Capture keyDown and blink key
-- [ ] Check if key down is the correct one
+- [x] Check if key down is the correct one
+- [ ] Add effect to wrong key pressed
 - [ ] Create setup to time limit and points for right answer
 
 
