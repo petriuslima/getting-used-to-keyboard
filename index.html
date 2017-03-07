@@ -14,9 +14,22 @@
             font-size: 16px;
             float:left;
         }
+
+        #target-keys {
+            height: 40px;
+            background-color: #f0f0f0;
+            clear: both;
+        }
+
+        #available-keys {
+            display: block;
+        }
     </style>
 </head>
 <body>
+
+<div id="available-keys"></div>
+<div id="target-keys"></div>
 
 <script type="text/javascript">
     var keys = [
@@ -60,13 +73,13 @@
         {key: "←", code: 37}
     ];
 
-    for (var i = 0; i < keys.length; i++) {
-        var div = document.createElement('div');
-        div.className = 'key-box';
-        div.id = 'key-' + keys[i].code;
-        div.innerHTML = keys[i].key;
+    var keyStream = [];
 
-        document.body.appendChild(div);
+    for (var i = 0; i < keys.length; i++) {
+
+        var div = createKeyDiv(keys[i].key, keys[i].code)
+
+        document.getElementById('available-keys').appendChild(div);
     }
 
     document.onkeydown = function(e) {
@@ -93,6 +106,45 @@
             }
         })
     }
+
+    function addOneNumberToKeyStream() {
+        var key = keys[Math.floor(Math.random() * (keys.length))];
+
+        keyStream.push(key);
+
+        var div = createKeyDiv(key.key, key.code);
+
+        document.getElementById('target-keys').appendChild(div);
+    }
+
+    function createKeyDiv(key, code) {
+        var div = document.createElement('div');
+        div.className = 'key-box';
+        div.id = 'key-' + code;
+        div.innerHTML = key;
+
+        return div;
+    }
+
+    function initTenKeyStream() {
+        for (var i = 0; i < 10; i++) {
+            addOneNumberToKeyStream();
+        }
+    }
+
+    document.onkeydown = function(e) {
+        if (e.keyCode != keyStream[0].code) {
+            console.log('error');
+            return;
+        }
+
+        keyStream.shift();
+        addOneNumberToKeyStream();
+
+        console.log('success');
+    }
+
+    initTenKeyStream();
 </script>
 </body>
 </html>
