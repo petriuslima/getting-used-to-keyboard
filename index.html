@@ -82,7 +82,7 @@
         document.getElementById('available-keys').appendChild(div);
     }
 
-    document.onkeydown = function(e) {
+    document.addEventListener('keydown', function(e) {
         e = e || window.event;
         e.preventDefault();
 
@@ -105,7 +105,7 @@
                 }, 75);
             }
         })
-    }
+    });
 
     function addOneNumberToKeyStream() {
         var key = keys[Math.floor(Math.random() * (keys.length))];
@@ -132,7 +132,7 @@
         }
     }
 
-    document.onkeydown = function(e) {
+    document.addEventListener('keydown', function(e) {
         if (e.keyCode != keyStream[0].code) {
             console.log('error');
             return;
@@ -142,7 +142,7 @@
         addOneNumberToKeyStream();
 
         console.log('success');
-    }
+    });
 
     initTenKeyStream();
 </script>
